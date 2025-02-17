@@ -1,10 +1,9 @@
-from fastapi import FastAPI, HTTPException
-from typing import Optional
-import asyncio
-from contextlib import asynccontextmanager
-
 import os
+import asyncio
 from dotenv import load_dotenv
+from typing import Optional
+from contextlib import asynccontextmanager
+from fastapi import FastAPI, HTTPException
 
 load_dotenv()
 
