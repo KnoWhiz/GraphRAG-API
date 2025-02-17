@@ -43,4 +43,4 @@ def file_check_list(embedding_folder) -> list:
         create_final_communities_path,
         lancedb_path
     ]
-    return path_list
+    return GraphRAG_embedding_folder, path_list

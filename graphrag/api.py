@@ -58,6 +58,8 @@ from graphrag.prompts.query.global_search_reduce_system_prompt import (
 from graphrag.prompts.query.local_search_system_prompt import LOCAL_SEARCH_SYSTEM_PROMPT
 from graphrag.prompts.query.question_gen_system_prompt import QUESTION_SYSTEM_PROMPT
 
+from utils import create_env_file, file_check_list
+
 GRAPHRAG_API_KEY = os.getenv("GRAPHRAG_API_KEY")
 GRAPHRAG_LLM_MODEL = os.getenv("GRAPHRAG_LLM_MODEL")
 GRAPHRAG_API_BASE = os.getenv("GRAPHRAG_API_BASE")
