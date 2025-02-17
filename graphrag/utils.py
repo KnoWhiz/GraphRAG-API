@@ -8,6 +8,19 @@ GRAPHRAG_LLM_MODEL = os.getenv("GRAPHRAG_LLM_MODEL")
 GRAPHRAG_API_BASE = os.getenv("GRAPHRAG_API_BASE")
 GRAPHRAG_API_VERSION = os.getenv("GRAPHRAG_API_VERSION")
 
+
+def create_env_file(GraphRAG_embedding_folder):
+    api_key = str(os.getenv("AZURE_OPENAI_API_KEY"))
+    env_content = \
+        f"""
+GRAPHRAG_API_KEY={api_key}
+"""
+    if not os.path.exists(GraphRAG_embedding_folder):
+        os.makedirs(GraphRAG_embedding_folder)
+    with open(os.path.join(GraphRAG_embedding_folder, '.env'), 'w') as env_file:
+        env_file.write(env_content)
+
+
 def file_check_list(embedding_folder) -> list:
     GraphRAG_embedding_folder = os.path.join(embedding_folder, "GraphRAG/")
     create_final_community_reports_path = GraphRAG_embedding_folder + "output/create_final_community_reports.parquet"
