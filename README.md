@@ -22,6 +22,10 @@ curl http://localhost:3000/status
 curl -X GET "http://localhost:3000/run-index?root=./input"
 ```
 
+```bash
+curl GET "http://localhost:3000/run-index?root=./graphrag_embedded_content/123/"
+```
+
 **Query**
 
 ```bash

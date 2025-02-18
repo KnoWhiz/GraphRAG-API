@@ -38,32 +38,21 @@ async def read_stream(stream, prefix):
         print(f"{prefix}: {decoded_line}")
     return '\n'.join(output)
 
-async def run_command(root: str):
-    """Run the indexing command as an async subprocess."""
+async def run_command(root: str, file_path: str):
+    """Run the indexing command using generate_GraphRAG_embedding."""
     job_id = root
     running_jobs.add(job_id)
     print(f"Running job: {job_id}")
 
     try:
-        process = await asyncio.create_subprocess_exec(
-            "python", "-m", "graphrag.index", "--root", root,
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE
-        )
-
-        stdout_output, stderr_output = await asyncio.gather(
-            read_stream(process.stdout, "stdout"),
-            read_stream(process.stderr, "stderr")
-        )
-
-        rc = await process.wait()
-        print(f"Indexing finished with return code: {rc}")
-
+        # Call generate_GraphRAG_embedding directly
+        await generate_GraphRAG_embedding(root)
+        
         return {
-            "status": "success" if rc == 0 else "error",
-            "message": "Job completed",
-            "stdout": stdout_output,
-            "stderr": stderr_output
+            "status": "success",
+            "message": "Job completed successfully",
+            "stdout": "GraphRAG embedding generation completed",
+            "stderr": ""
         }
     except Exception as e:
         print(f"Error in run_command: {str(e)}")
@@ -87,7 +76,8 @@ async def background_job_processor():
 
 @app.get("/run-index")
 async def run_index(root: Optional[str] = "."):
-    """Endpoint to start the indexing job."""
+    # root = f"./graphrag_embedded_content/{course_id}/GraphRAG/"
+    """Endpoint to start the indexing job using generate_GraphRAG_embedding."""
     print(f"Received request for /run-index - root: {root}")
 
     async with queue_lock:

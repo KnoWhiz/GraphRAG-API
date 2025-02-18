@@ -1,2 +1,4 @@
 .env
 /graphrag/__pycache__
+/graphrag/input
+/graphrag/graphrag_embedded_content
