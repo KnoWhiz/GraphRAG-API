@@ -101,7 +101,7 @@ async def generate_GraphRAG_embedding(embedding_folder):
                         file.write(content.encode(encoding="utf-8", errors="strict"))
         except Exception as e:
             print("Initialization error:", e)
-        settings = yaml.safe_load(open("./pipeline/science/pipeline/graphrag_settings.yaml"))
+        settings = yaml.safe_load(open("settings.yml"))
         graphrag_config = create_graphrag_config(
             values=settings, root_dir=GraphRAG_embedding_folder
         )

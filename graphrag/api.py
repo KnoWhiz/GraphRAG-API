@@ -38,8 +38,9 @@ async def read_stream(stream, prefix):
         print(f"{prefix}: {decoded_line}")
     return '\n'.join(output)
 
-async def run_command(root: str, file_path: str):
+async def run_command(root: str):
     """Run the indexing command using generate_GraphRAG_embedding."""
+    print(f"Running job: {root}")
     job_id = root
     running_jobs.add(job_id)
     print(f"Running job: {job_id}")
