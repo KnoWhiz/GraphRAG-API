@@ -57,6 +57,8 @@ from utils import create_env_file, file_check_list
 
 async def generate_GraphRAG_embedding(embedding_folder):
     GraphRAG_embedding_folder, path_list = file_check_list(embedding_folder)
+    print(f"GraphRAG_embedding_folder: {GraphRAG_embedding_folder}")
+    print(f"path_list: {path_list}")
 
     # Check if all necessary paths in path_list exist
     if all([os.path.exists(path) for path in path_list]):
@@ -105,6 +107,7 @@ async def generate_GraphRAG_embedding(embedding_folder):
         graphrag_config = create_graphrag_config(
             values=settings, root_dir=GraphRAG_embedding_folder
         )
+        # print(f"graphrag_config: {graphrag_config}")
 
         try:
             await api.build_index(config=graphrag_config)
